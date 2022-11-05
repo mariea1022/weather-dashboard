@@ -1,0 +1,62 @@
+.container {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.row {
+    margin-left: 0px;
+   
+}
+
+/* /* main {
+    display: flex;
+    flex-direction: row;
+} */
+
+header {
+    width: 100%;
+    background-color: rgb(33, 33, 135);
+    color: white;
+    text-indent: 50%;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+}
+
+.sidenav-container {
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.btn-secondary {
+    width: 100%;
+    margin-bottom: 3%;
+}
+/* 
+.today-container {
+    border: solid;
+    
+    margin-bottom: 3%;
+}
+
+.forecast-container {
+    display: flex;
+    flex-direction: row;
+    
+} */
+
+.day-forecast-box {
+    padding-right: 2%;
+    border: solid;
+    
+}    
