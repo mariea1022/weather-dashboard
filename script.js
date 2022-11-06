@@ -10,6 +10,7 @@ var currentHumidityEl = document.querySelector("#currentHumidity")
 var futureTempEl = document.querySelectorAll(".futureTemp")
 var futureWindEl = document.querySelectorAll(".futureWind")
 var futureHumidityEl = document.querySelectorAll(".futureHumidity")
+var futureWeatherIconEl = document.querySelectorAll(".futureWeatherIcon")
 
 // state variables
 // const variables
@@ -56,8 +57,7 @@ function searchCity(latitude, longitude) {
         // THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
         // console.log(data.weather[0].icon)
         var weatherIcon = data.weather[0].icon
-        var iconURL = "http://openweathermap.org/img/wn/10d@2x.png"
-        // "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
+        var iconURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
         weatherIconEl.setAttribute("src", iconURL)
         var currentTemp = "Temp: " + data.main.temp 
         currentTempEl.textContent = currentTemp
@@ -79,8 +79,11 @@ function searchCityForecast(latitude, longitude) {
     return response.json();
 })
     .then(function (data) {
-    // console.log(data)
+    console.log(data)
     for (var i = 0; i < 5; i++) {
+    var futureWeatherIcon = data.list[i].weather[0].icon
+    var futureIconURL = "http://openweathermap.org/img/wn/" + futureWeatherIcon + "@2x.png";
+    futureWeatherIconEl[i].setAttribute("src", futureIconURL)
     // console.log(data.list[i].main.temp)
     var futureTemp = "Temp: " + data.list[i].main.temp 
     futureTempEl[i].textContent = futureTemp

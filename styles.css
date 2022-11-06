@@ -62,6 +62,10 @@ ul {
 
 .day-forecast-box {
     padding-right: 2%;
-    border: solid;
-    
-}    
+    border: solid;  
+}  
+
+.futureWeatherIcon {
+    width: 50px;
+    height: 50px;
+}
