@@ -56,7 +56,8 @@ function searchCity(latitude, longitude) {
         // THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
         // console.log(data.weather[0].icon)
         var weatherIcon = data.weather[0].icon
-        var iconURL = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
+        var iconURL = "http://openweathermap.org/img/wn/10d@2x.png"
+        // "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
         weatherIconEl.setAttribute("src", iconURL)
         var currentTemp = "Temp: " + data.main.temp 
         currentTempEl.textContent = currentTemp
