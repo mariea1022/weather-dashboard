@@ -1,6 +1,7 @@
 // HOOKS to the DOM
 var searchButtonEl = document.querySelector(".btn-primary")
 var cityInputEl = document.querySelector("#form-1")
+var weatherContainerEl = document.querySelector(".weather-container")
 var cityNameCurrentDateEl = document.querySelector("#cityName")
 var currentDateEl = document.querySelector("#currentDate")
 var weatherIconEl = document.querySelector("#weatherIcon")
@@ -11,6 +12,7 @@ var futureTempEl = document.querySelectorAll(".futureTemp")
 var futureWindEl = document.querySelectorAll(".futureWind")
 var futureHumidityEl = document.querySelectorAll(".futureHumidity")
 var futureWeatherIconEl = document.querySelectorAll(".futureWeatherIcon")
+var searchHistoryBtnEl = document.querySelectorAll(".btn-secondary")
 
 // state variables
 // const variables
@@ -22,13 +24,31 @@ var futureWeatherIconEl = document.querySelectorAll(".futureWeatherIcon")
 
 // when search button is clicked, value from form input is used for API search parameter
 searchButtonEl.addEventListener("click", searchCoords) 
-    
+  
+function updateRecentCities() {
+    var preExistingCities = localStorage.getItem("search")
+        var arrCities = []
+        if (preExistingCities) {
+            arrCities = JSON.parse(preExistingCities)
+        }
+        for (var i = 0; i < 8; i++) {
+            var cityName = arrCities[i]
+            searchHistoryBtnEl[i].textContent = cityName
+            if (searchButtonEl[i] = cityName) {
+            searchHistoryBtnEl[i].style.display = "block"
+        }
+        }
+    }
+
+updateRecentCities()
+
 // if input is not a valid city then return?
 // if input is a valid city then run fetch call?
 function searchCoords() {
     var city = cityInputEl.value
     console.log(city)
-    cityNameCurrentDateEl.textContent = city
+    
+    
     var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=b8508be034c21d15df5123b4ba8affbc"
 
     fetch(requestURL)
@@ -36,12 +56,30 @@ function searchCoords() {
         return response.json();
     })
     .then(function (data) {
+        var cityName = data[0].name
+
+        var preExistingCities = localStorage.getItem("search")
+        var arrCities = []
+        if (preExistingCities) {
+            console.log(preExistingCities)
+            arrCities = JSON.parse(preExistingCities)
+        }
+        arrCities.unshift(cityName)
+        console.log(arrCities)
+        var json = JSON.stringify(arrCities)
+        localStorage.setItem("search", json)
+        updateRecentCities()
+
+        var cityCountry = data[0].country
+        cityNameCurrentDateEl.textContent = cityName + ", " + cityCountry
         // console.log(data[0].lat);
         var latitude = data[0].lat
         // console.log(data[0].lon);
         var longitude = data[0].lon
         searchCity(latitude, longitude)
         searchCityForecast(latitude, longitude)
+
+        weatherContainerEl.style.display = "block"
     })
 }
 
@@ -99,4 +137,12 @@ function searchCityForecast(latitude, longitude) {
 
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
-    // local storage?
+    // addEventListener to each button  
+    // get the text via textContent via event.target
+for (var i = 0; i < searchHistoryBtnEl.length; i++) {
+searchHistoryBtnEl[i].addEventListener("click", function(event) {
+    cityInputEl.value = event.target.textContent
+    // console.log(cityInputEl)
+    searchCoords()
+})
+}
