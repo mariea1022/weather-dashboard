@@ -9,7 +9,7 @@ var weatherIconEl = document.querySelector("#weatherIcon")
 var currentTempEl = document.querySelector("#currentTemp")
 var currentWindEl = document.querySelector("#currentWind")
 var currentHumidityEl = document.querySelector("#currentHumidity")
-var futureDateEl = document.querySelector(".futureDate")
+var futureDateEl = document.querySelectorAll(".futureDate")
 var futureTempEl = document.querySelectorAll(".futureTemp")
 var futureWindEl = document.querySelectorAll(".futureWind")
 var futureHumidityEl = document.querySelectorAll(".futureHumidity")
@@ -108,7 +108,8 @@ function searchCity(latitude, longitude) {
         var dateObject = new Date(milliseconds)
         var humanDateFormat = dateObject.toLocaleDateString() 
         console.log(humanDateFormat)
-        currentDateEl.textContent = humanDateFormat
+        console.log(currentDateEl.textContent = humanDateFormat)
+        // currentDateEl.textContent = humanDateFormat
         // console.log(data.weather[0].icon)
         var weatherIcon = data.weather[0].icon
         var iconURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
@@ -140,7 +141,7 @@ function searchCityForecast(latitude, longitude) {
     var dateObject = new Date(milliseconds)
     var humanDateFormat = dateObject.toLocaleDateString() 
     console.log(humanDateFormat)
-    // futureDateEl[i].textContent = humanDateFormat
+    futureDateEl[i].textContent = humanDateFormat
     var futureWeatherIcon = data.list[(i*8)+7].weather[0].icon
     var futureIconURL = "http://openweathermap.org/img/wn/" + futureWeatherIcon + "@2x.png";
     futureWeatherIconEl[i].setAttribute("src", futureIconURL)
@@ -149,7 +150,7 @@ function searchCityForecast(latitude, longitude) {
     var futureWind = "Wind: " + data.list[(i*8)+7].wind.speed + " MPH"
     futureWindEl[i].textContent = futureWind
     console.log(data.list[(i*8)+7].main.humidity)
-    var futureHumidity = "Humidity: " + data.list[(i*8)+7].main.humidity
+    var futureHumidity = "Humidity: " + data.list[(i*8)+7].main.humidity + "%"
     futureHumidityEl[i].textContent = futureHumidity
 }
 
