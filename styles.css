@@ -42,18 +42,17 @@ ul {
     width: 100%;
     margin-bottom: 3%;
 }
-/* 
-.weather-container {
+
+.current-weather {
     border: solid;
-    
+    border-width: 2px;
     margin-bottom: 3%;
 }
 
-.forecast-container {
-    display: flex;
-    flex-direction: row;
-    
-} */
+.initial-weather-content {
+    align-items:  center;
+    font-size: 18px;
+}
 
 #weatherIcon {
     width: 50px;
@@ -61,8 +60,12 @@ ul {
 }
 
 .day-forecast-box {
-    padding-right: 2%;
+    padding-right: 3%;
     border: solid;  
+    border-width: 2px;
+    background-color: rgb(27, 27, 90);
+    color: white;
+    margin-right: 10px;
 }  
 
 .futureWeatherIcon {

@@ -1,6 +1,7 @@
 // HOOKS to the DOM
 var searchButtonEl = document.querySelector(".btn-primary")
 var cityInputEl = document.querySelector("#form-1")
+var initialContentEl = document.querySelector(".initial-weather-content")
 var weatherContainerEl = document.querySelector(".weather-container")
 var cityNameCurrentDateEl = document.querySelector("#cityName")
 var currentDateEl = document.querySelector("#currentDate")
@@ -79,6 +80,7 @@ function searchCoords() {
         searchCity(latitude, longitude)
         searchCityForecast(latitude, longitude)
 
+        initialContentEl.style.display = "none"
         weatherContainerEl.style.display = "block"
     })
 }
@@ -97,7 +99,7 @@ function searchCity(latitude, longitude) {
         var weatherIcon = data.weather[0].icon
         var iconURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
         weatherIconEl.setAttribute("src", iconURL)
-        var currentTemp = "Temp: " + data.main.temp 
+        var currentTemp = "Temp: " + data.main.temp + " \u00B0F"
         currentTempEl.textContent = currentTemp
         var currentWind = "Wind: " + data.wind.speed + " MPH"
         currentWindEl.textContent = currentWind
@@ -123,7 +125,7 @@ function searchCityForecast(latitude, longitude) {
     var futureIconURL = "http://openweathermap.org/img/wn/" + futureWeatherIcon + "@2x.png";
     futureWeatherIconEl[i].setAttribute("src", futureIconURL)
     // console.log(data.list[i].main.temp)
-    var futureTemp = "Temp: " + data.list[i].main.temp 
+    var futureTemp = "Temp: " + data.list[i].main.temp + " \u00B0F"
     futureTempEl[i].textContent = futureTemp
     // console.log(data.list[i].wind.speed)
     var futureWind = "Wind: " + data.list[i].wind.speed + " MPH"
