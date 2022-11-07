@@ -23,9 +23,9 @@ var searchHistoryBtnEl = document.querySelectorAll(".btn-secondary")
 // WHEN I search for a city 
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
 
-// when search button is clicked, value from form input is used for API search parameter
+// when search button is clicked, text from form input is used for API search parameter
 searchButtonEl.addEventListener("click", searchCoords) 
-  
+
 function updateRecentCities() {
     var preExistingCities = localStorage.getItem("search")
         var arrCities = []
@@ -47,7 +47,7 @@ updateRecentCities()
 // if input is a valid city then run fetch call?
 function searchCoords() {
     var city = cityInputEl.value
-    console.log(city)
+    // console.log(city)
     
     
     var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=b8508be034c21d15df5123b4ba8affbc"
@@ -57,16 +57,22 @@ function searchCoords() {
         return response.json();
     })
     .then(function (data) {
+        // console.log(data)
         var cityName = data[0].name
 
         var preExistingCities = localStorage.getItem("search")
         var arrCities = []
+
+        // if local storage has data, store data in arrCities array
         if (preExistingCities) {
-            console.log(preExistingCities)
+            // console.log(preExistingCities)
             arrCities = JSON.parse(preExistingCities)
         }
+        // adds new element to beginning of array
+        if (!arrCities.includes(cityName)) {
         arrCities.unshift(cityName)
-        console.log(arrCities)
+        // console.log(arrCities)
+        }
         var json = JSON.stringify(arrCities)
         localStorage.setItem("search", json)
         updateRecentCities()
@@ -93,8 +99,15 @@ function searchCity(latitude, longitude) {
         return response.json();
     })
     .then(function (data) {
+        // console.log(data)
         // WHEN I view current weather conditions for that city
         // THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
+        var unixTimestamp = data.dt
+        var milliseconds = unixTimestamp * 1000 
+        var dateObject = new Date(milliseconds)
+        var humanDateFormat = dateObject.toLocaleDateString() 
+        console.log(humanDateFormat)
+        currentDateEl.textContent = humanDateFormat
         // console.log(data.weather[0].icon)
         var weatherIcon = data.weather[0].icon
         var iconURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
