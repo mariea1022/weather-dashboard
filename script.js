@@ -9,6 +9,7 @@ var weatherIconEl = document.querySelector("#weatherIcon")
 var currentTempEl = document.querySelector("#currentTemp")
 var currentWindEl = document.querySelector("#currentWind")
 var currentHumidityEl = document.querySelector("#currentHumidity")
+var futureDateEl = document.querySelector(".futureDate")
 var futureTempEl = document.querySelectorAll(".futureTemp")
 var futureWindEl = document.querySelectorAll(".futureWind")
 var futureHumidityEl = document.querySelectorAll(".futureHumidity")
@@ -132,21 +133,26 @@ function searchCityForecast(latitude, longitude) {
     return response.json();
 })
     .then(function (data) {
-    console.log(data)
-    for (var i = 0; i < 5; i++) {
-    var futureWeatherIcon = data.list[i].weather[0].icon
+    console.log(data.list)
+    for (var i = 0; i < 5 ; i++) {
+    var unixTimestamp = data.list[(i*8)+7].dt
+    var milliseconds = unixTimestamp * 1000 
+    var dateObject = new Date(milliseconds)
+    var humanDateFormat = dateObject.toLocaleDateString() 
+    console.log(humanDateFormat)
+    // futureDateEl[i].textContent = humanDateFormat
+    var futureWeatherIcon = data.list[(i*8)+7].weather[0].icon
     var futureIconURL = "http://openweathermap.org/img/wn/" + futureWeatherIcon + "@2x.png";
     futureWeatherIconEl[i].setAttribute("src", futureIconURL)
-    // console.log(data.list[i].main.temp)
-    var futureTemp = "Temp: " + data.list[i].main.temp + " \u00B0F"
+    var futureTemp = "Temp: " + data.list[(i*8)+7].main.temp + " \u00B0F"
     futureTempEl[i].textContent = futureTemp
-    // console.log(data.list[i].wind.speed)
-    var futureWind = "Wind: " + data.list[i].wind.speed + " MPH"
+    var futureWind = "Wind: " + data.list[(i*8)+7].wind.speed + " MPH"
     futureWindEl[i].textContent = futureWind
-    // console.log(data.list[i].main.humidity)
-    var futureHumidity = "Humidity: " + data.list[i].main.humidity
+    console.log(data.list[(i*8)+7].main.humidity)
+    var futureHumidity = "Humidity: " + data.list[(i*8)+7].main.humidity
     futureHumidityEl[i].textContent = futureHumidity
-    }
+}
+
 })
 }
 
