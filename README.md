@@ -35,10 +35,10 @@ N/A
 
 [Here is the link to the weather dashboard application.](https://mariea1022.github.io/work-day-scheduler/)
 
-To use this application, enter your event in the timeblocks colored gray, red-orange or green. To save your event on the scheduler, click on the button with the floppy disk icon. If you reload, your saved events will persist on the page.
+To use this application, enter a city name in the search bar and click on the search button. The city's current weather and 5 day forecast will then appear on the screen. Your city will also be saved in the search history in the side nav. 
 
-Below is the image of the work day scheduler application.
-![scheduler application screenshot](assets/scheduler-screenshot.png)
+Below is the image of the weather dashboard application.
+![weather dashboard application screenshot](assets/scheduler-screenshot.png)
 
 ## Credits
 

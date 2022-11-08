@@ -47,7 +47,7 @@ function searchCoords() {
     // console.log(city)
     
     
-    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=b8508be034c21d15df5123b4ba8affbc"
+    var requestURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=b8508be034c21d15df5123b4ba8affbc"
 
     fetch(requestURL)
     .then(function (response) {
