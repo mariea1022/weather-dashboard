@@ -16,10 +16,6 @@ var futureHumidityEl = document.querySelectorAll(".futureHumidity")
 var futureWeatherIconEl = document.querySelectorAll(".futureWeatherIcon")
 var searchHistoryBtnEl = document.querySelectorAll(".btn-secondary")
 
-// state variables
-// const variables
-
-
 // GIVEN a weather dashboard with form inputs 
 // WHEN I search for a city 
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
@@ -58,7 +54,7 @@ function searchCoords() {
         return response.json();
     })
     .then(function (data) {
-        // console.log(data)
+        console.log(data)
         var cityName = data[0].name
 
         var preExistingCities = localStorage.getItem("search")
@@ -108,8 +104,8 @@ function searchCity(latitude, longitude) {
         var dateObject = new Date(milliseconds)
         var humanDateFormat = dateObject.toLocaleDateString() 
         console.log(humanDateFormat)
-        console.log(currentDateEl.textContent = humanDateFormat)
-        // currentDateEl.textContent = humanDateFormat
+        console.log(currentDateEl)
+        currentDateEl.textContent = "(" + humanDateFormat + ")"
         // console.log(data.weather[0].icon)
         var weatherIcon = data.weather[0].icon
         var iconURL = "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
