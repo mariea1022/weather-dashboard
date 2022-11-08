@@ -33,12 +33,12 @@ N/A
 
 ## Usage
 
-[Here is the link to the weather dashboard application.](https://mariea1022.github.io/work-day-scheduler/)
+[Here is the link to the weather dashboard application.](https://mariea1022.github.io/weather-dashboard/)
 
-To use this application, enter a city name in the search bar and click on the search button. The city's current weather and 5 day forecast will then appear on the screen. Your city will also be saved in the search history in the side nav. 
+To use this application, enter a city name in the search bar and click on the search button. The city's current weather and 5 day forecast will then appear on the screen. Your city will also be saved in the search history in the side navigation bar. 
 
-Below is the image of the weather dashboard application.
-![weather dashboard application screenshot](assets/scheduler-screenshot.png)
+Below is a video of the weather dashboard application.
+![weather dashboard application screenshot](assets/video-application/weather-dash.mp4)
 
 ## Credits
 
@@ -47,4 +47,3 @@ N/A
 ## License
 
 Please refer to the LICENSE in the repo.
-```
