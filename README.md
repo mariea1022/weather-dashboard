@@ -38,7 +38,7 @@ N/A
 To use this application, enter a city name in the search bar and click on the search button. The city's current weather and 5 day forecast will then appear on the screen. Your city will also be saved in the search history in the side navigation bar. 
 
 Below is a video of the weather dashboard application.
-![weather dashboard application screenshot](assets/video-application/weather-dash.mp4)
+![weather dashboard application screenshot](http://www.giphy.com/gifs/spk54nHgDQw27kCfId)
 
 ## Credits
 
